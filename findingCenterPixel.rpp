@@ -1,0 +1,20 @@
+kernel PixelKernal : ImageComputationKernel<ePixelWise>
+{
+  Image<eRead, eAccessPoint, eEdgeClamped> src;
+  Image<eWrite, eAccessRandom> dst;
+
+  local:
+    float cx;
+    float cy;
+
+  void init()
+  {
+    cx = src.bounds.x2/2.0f;
+    cy = src.bounds.y2/2.0f;
+  }
+
+  void process() {
+
+      dst(cx, cy) = 1.0f;
+  }
+};
