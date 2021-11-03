@@ -1,0 +1,37 @@
+kernel PixelKernal : ImageComputationKernel<ePixelWise>
+{
+  Image<eRead, eAccessPoint, eEdgeClamped> src;
+  Image<eWrite, eAccessPoint> dst;
+
+  param:
+    float value;
+
+  local:
+    float cx;
+    float cy;
+
+  void define()
+  {
+    defineParam(value, "Y-Value", 1556.0f/2.0f);
+  }
+
+  void init()
+  {
+    cx = src.bounds.x2/2.0f;
+    cy = src.bounds.y2/2.0f;
+
+  }
+
+  void process(int2 pos) {
+      if (pos.y == int(value)){
+        dst() = float4(1.0f, 0.0f, 0.0f, 1.0f);
+      }
+      if (pos.y+1 == int(value)){
+        dst() = float4(1.0f, 0.0f, 0.0f, 1.0f);
+      }
+      if (pos.y+2 == int(value)){
+        dst() = float4(1.0f, 0.0f, 0.0f, 1.0f);
+      }
+
+  }
+};
