@@ -1,0 +1,16 @@
+
+kernel SwitchKernal : ImageComputationKernel<ePixelWise>
+{
+  Image<eRead, eAccessPoint, eEdgeClamped> src;
+  Image<eWrite> dst;
+
+  param:
+    bool invert;
+
+  void process() {
+    if (invert == true)
+      dst() = 1.0f - src();
+    else
+      dst() = src();
+  }
+};
